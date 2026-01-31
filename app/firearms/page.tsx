@@ -20,12 +20,16 @@ export default function FirearmsPage() {
 
       <section className="space-y-6">
         <div>
-          <h2 className="text-2xl font-semibold mb-2">Handguns</h2>
-          <p className="text-gray-400">
-            Pistols and revolvers from leading manufacturers, suitable for
-            concealed carry, duty use, and home defense.
-          </p>
-        </div>
+          <h2 className="text-2xl font-semibold mb-2">
+          <a href="/firearms/handguns" className="hover:underline">
+      Handguns
+    </a>
+  </h2>
+  <p className="text-gray-400">
+    Pistols and revolvers from leading manufacturers, suitable for concealed
+    carry, duty use, and home defense.
+  </p>
+</div>
 
         <div>
           <h2 className="text-2xl font-semibold mb-2">Rifles</h2>
