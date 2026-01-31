@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Firearms for Sale | Alamo Ranch Firearms",
@@ -23,7 +24,7 @@ export default function FirearmsPage() {
           <h2 className="text-2xl font-semibold mb-2">
           <a href="/firearms/handguns" className="hover:underline">
       Handguns
-    </a>
+    </Link>
   </h2>
   <p className="text-gray-400">
     Pistols and revolvers from leading manufacturers, suitable for concealed
