@@ -22,7 +22,7 @@ export default function FirearmsPage() {
       <section className="space-y-6">
         <div>
           <h2 className="text-2xl font-semibold mb-2">
-          <a href="/firearms/handguns" className="hover:underline">
+          <Link href="/firearms/handguns" className="hover:underline">
       Handguns
     </Link>
   </h2>
@@ -31,7 +31,6 @@ export default function FirearmsPage() {
     carry, duty use, and home defense.
   </p>
 </div>
-
         <div>
           <h2 className="text-2xl font-semibold mb-2">Rifles</h2>
           <p className="text-gray-400">
