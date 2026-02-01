@@ -1,11 +1,12 @@
+// force-deploy
+
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
 
 export default function HeaderNav() {
-  const [firearmsOpen, setFirearmsOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <header className="border-b border-neutral-800">
@@ -15,19 +16,20 @@ export default function HeaderNav() {
           Alamo Ranch Firearms
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8 text-sm">
-          <div className="relative">
-            <button
-              type="button"
-              className="hover:underline"
-              onClick={() => setFirearmsOpen(!firearmsOpen)}
-            >
+          {/* Firearms hover menu */}
+          <div
+            className="relative"
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+          >
+            <span className="cursor-default hover:underline">
               Firearms
-            </button>
+            </span>
 
-            {firearmsOpen && (
-              <div className="absolute top-full mt-2 w-64 rounded-md border border-neutral-800 bg-black shadow-lg z-50">
+            {open && (
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-md border border-neutral-800 bg-black shadow-lg z-50">
                 <ul className="flex flex-col">
                   <NavItem href="/firearms/handguns" label="Handguns" />
                   <NavItem
@@ -52,47 +54,32 @@ export default function HeaderNav() {
           </Link>
         </nav>
 
-        {/* Hamburger Button (Mobile) */}
+        {/* Hamburger (mobile only) */}
         <button
           type="button"
-          className="md:hidden text-sm border border-neutral-700 px-3 py-2 rounded"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden flex flex-col gap-1"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
         >
-          ☰
+          <span className="w-6 h-0.5 bg-white" />
+          <span className="w-6 h-0.5 bg-white" />
+          <span className="w-6 h-0.5 bg-white" />
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
+      {/* Mobile menu */}
+      {open && (
         <div className="md:hidden border-t border-neutral-800 bg-black">
-          <nav className="flex flex-col px-6 py-4 text-sm gap-4">
-            <button
-              type="button"
-              className="text-left font-semibold"
-              onClick={() => setFirearmsOpen(!firearmsOpen)}
-            >
+          <nav className="flex flex-col px-6 py-4 gap-4 text-sm">
+            <Link href="/firearms" onClick={() => setOpen(false)}>
               Firearms
-            </button>
-
-            {firearmsOpen && (
-              <div className="pl-4 flex flex-col gap-2">
-                <NavItem href="/firearms/handguns" label="Handguns" />
-                <NavItem
-                  href="/firearms/semi-automatic-rifles"
-                  label="Semi-Automatic Rifles"
-                />
-                <NavItem
-                  href="/firearms/bolt-action-rifles"
-                  label="Bolt-Action Rifles"
-                />
-                <NavItem
-                  href="/firearms/rifle-style-pistols"
-                  label="Rifle-Style Pistols"
-                />
-              </div>
-            )}
-
-            <Link href="/suppressors">Suppressors</Link>
+            </Link>
+            <Link href="/firearms/handguns" onClick={() => setOpen(false)}>
+              Handguns
+            </Link>
+            <Link href="/suppressors" onClick={() => setOpen(false)}>
+              Suppressors
+            </Link>
           </nav>
         </div>
       )}
@@ -102,11 +89,13 @@ export default function HeaderNav() {
 
 function NavItem({ href, label }: { href: string; label: string }) {
   return (
-    <Link
-      href={href}
-      className="block px-4 py-2 hover:bg-neutral-900"
-    >
-      {label}
-    </Link>
+    <li>
+      <Link
+        href={href}
+        className="block px-4 py-3 hover:bg-neutral-900"
+      >
+        {label}
+      </Link>
+    </li>
   );
 }
