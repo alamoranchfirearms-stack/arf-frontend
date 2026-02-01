@@ -9,7 +9,7 @@ export default function HeaderNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="border-b border-neutral-800">
+    <header className="border-b border-neutral-800 z-50">
       <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
         {/* Brand */}
         <Link href="/" className="text-lg font-semibold">
