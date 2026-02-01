@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import HeaderNav from "./components/HeaderNav";
+import Nav from "./components/Nav";
 
 
 const geistSans = Geist({
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <HeaderNav />
+        <Nav />
         {children}
         <Analytics />
       </body>
